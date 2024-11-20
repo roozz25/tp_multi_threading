@@ -28,3 +28,10 @@ jobs:
       - name: Run unittest
         # For example, using `pytest`
         run:  uv run python -m unittest
+
+strategy:
+  matrix:
+    python-version:
+      - "3.10"
+      - "3.11"
+      - "3.12"

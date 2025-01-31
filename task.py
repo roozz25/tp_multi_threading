@@ -7,21 +7,20 @@ import json
 class Task:
     def __init__(self, identifier=0, size=None):
         self.identifier = identifier
-        # choosee the size of the problem
-        self.size = size or np.random.randint(300, 3_000)
-        # Generate the input of the problem
+        self.size = size or 1000 #np.random.randint(300, 3_000)
         self.a = np.random.rand(self.size, self.size)
         self.b = np.random.rand(self.size)
-        # prepare room for the results
         self.x = np.zeros((self.size))
         self.time = 0
     
 
 
     def work(self):
-        start = time.perf_counter()
+        #start = time.perf_counter()
+        start = time.time() 
         self.x = np.linalg.solve(self.a, self.b)
-        self.time = time.perf_counter() - start
+        #self.time = time.perf_counter() - start
+        self.time = time.time() - start
         print(f"Task N {self.identifier}, duration : {self.time}, result : {self.x}")
     
     def to_json(self) -> str : 
@@ -43,6 +42,7 @@ class Task:
         task.x = np.array(data["x"])
         task.size = np.array(data["size"])
         task.identifier = np.array(data["identifier"])
+        task.time = float(data["time"])
         return task
     
     def __eq__(self, other: "Task") -> bool:

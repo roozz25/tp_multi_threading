@@ -13,7 +13,7 @@ class Boss(QueueClient):
     def get_result(self):
         for i in range(5):
             task = self.result_queue.get()
-            print(f"{task.identifier}")
+            print(f"Task id : {task.identifier}; Task time : {task.time}")
     
 
 if __name__ == "__main__":

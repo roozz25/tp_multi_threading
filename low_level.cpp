@@ -23,20 +23,21 @@ class Task{
     {
         cpr::Response r = cpr::Get(cpr::Url{"http://127.0.0.1:8000"},
         cpr::Bearer{"Maxoff"});
+        //std::cout << "Response JSON: " << r.text << std::endl;
         json taskj = json::parse(r.text); 
         auto a_mat = taskj["a"];
         auto b_vec = taskj["b"];
         auto x_vec = taskj["x"];
         size = taskj["size"];
         identifier = taskj["identifier"]; 
-
         int a_lig = a_mat.size();
         int a_col = a_mat[0].size();
+
 
         a.resize(a_lig,a_col);
 
         for(int i = 0; i < a_lig; i++){
-            for(int j = 0; i < a_col; i++){
+            for(int j = 0; j  < a_col; j++){
                 a(i,j) = a_mat[i][j];
             }
         }
@@ -58,7 +59,6 @@ class Task{
        auto start = high_resolution_clock::now();
         
         x = a.colPivHouseholderQr().solve(b);
-
         //nnnnnnnn
         auto end = high_resolution_clock::now();
 
@@ -100,7 +100,6 @@ class Task{
 
         cpr::Response r = cpr::Post(cpr::Url{"http://127.0.0.1:8000"}, cpr::Body{post_data.dump()},
                 cpr::Header{{"Content-Type", "application/json"}});
-
         if (r.status_code != 200) {
             cerr << "HTTP POST failed with status: " << r.status_code << endl;
         } else {

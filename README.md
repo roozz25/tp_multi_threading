@@ -70,5 +70,24 @@ python boss.py
 ./build/low_level
 ```
 # **Tests et performances**
+Pour 5 tâches : <br>
+Exécution avec Python : <br>
+Task id : 0; Task time : 0.04855179786682129
+Task id : 1; Task time : 7.724761962890625e-05
+Task id : 2; Task time : 6.246566772460938e-05
+Task id : 3; Task time : 4.4345855712890625e-05
+Task id : 4; Task time : 4.315376281738281e-05
 
-e
+Exécution avec C++ : <br>
+Task id : 0; Task time : 1.809999957913533e-05
+Task id : 1; Task time : 3.2899999496294186e-05
+Task id : 2; Task time : 1.4000000192027073e-05
+Task id : 3; Task time : 1.4299999747890979e-05
+Task id : 4; Task time : 2.879999919969123e-05
+
+
+On constate que le code C++ est environ 2 à 7 fois plus rapide en exécution que le code python dans nos test. Malgré que les resultats du C++ soit plus rapide, on observe quand meme un ordre de grandeur similaire dans les temps de calculs, cela peut s'expliquer par le fait que la bibliothèque numpy de python est en réalité codée majoritairement en C. 
+
+
+
+
